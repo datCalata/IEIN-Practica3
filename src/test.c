@@ -42,6 +42,13 @@ int main (){
 	free(aula1);
 	free(mssg1);
 
+	msg_rcv* msga1 = generadorMsg(0,'a',1);
+
+	result = procesaMsg(msga1);
+	printf("procesaMsg devuelve %d(deberia ser 24)\n", result);
+
+	free(msga1);
+
 	msg_rcv* msg0 = generadorMsg(0,'a',1);
 	msg_rcv* msg1 = generadorMsg(1,'a',1);
 	msg_rcv* msg2 = generadorMsg(2,'a',1);

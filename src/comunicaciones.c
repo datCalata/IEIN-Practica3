@@ -123,6 +123,9 @@ int borraAula(int id_aula){
 	aula* aulaBorrar = NULL;
 	int num = 0;
 	//Hacemos una estructura paralela en la que almacenamos lo que no borramos
+	/*El bucle incrementa un contador que va a ser nuestra condicion para ver si se ha borrado correctamente
+	num solo aumentara en el caso de que id_aula distinto del id del aula de la estructuera
+	si son iguales hacemos copia*/
 	for(int i = 0; i < nAulas; i++){
 		if(id_aula != datosAulas[i].aula_id){
 			//NOTA: HACEMOS UN ALLOC DIRECTAMENTE PORQUE INICIALIZAMOS EL PUNT
@@ -146,6 +149,9 @@ int borraAula(int id_aula){
 		nAulas = num;
 		return 22;
 	}else{
+		//La estructura paralela y datos Aula son iguales, por lo que liberamos la primera
+		free(listaAulas);
+		free(aulaBorrar);
 		printf("Error no se ha podido borrar\n");
 		return -1;
 	}
@@ -154,7 +160,7 @@ int muestraTodo(void){
 	aula* miAula = NULL;
 	if(nAulas == 0){
 		printf("No hay datos que imprimir \n");
-		return -1;
+		return 24;
 	}
 	for(int i = 0; i < nAulas; i++){
 		miAula = datosAulas+i;
